@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Agregar Peluquero</h2>
+<form [formGroup]="form" (ngSubmit) = "addEditPeluquero()">
+    <mat-dialog-content>
+
+        <mat-form-field appearance="outline">
+            <mat-label>ID</mat-label>
+            <input formControlName="id" matInput placeholder="Ingrese el ID">
+        </mat-form-field>
+        <div class="error">
+            <span *ngIf="form.get('id')?.hasError('required') && form.get('id')?.touched">El ID es un campo <strong>requerido</strong></span>
+            <span *ngIf="form.get('id')?.hasError('maxlength')">Maximo <strong>5 caracteres</strong></span>
+            <span *ngIf="form.get('id')?.hasError('pattern')">Solo se admiten <strong>numeros</strong></span>
+        </div>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre y Apellido</mat-label>
+            <input formControlName="nombreyape" matInput placeholder="Ingrese Nombre y Apellido">
+        </mat-form-field>
+        <div class="error">
+            <span *ngIf="form.get('nombreyape')?.hasError('required') && form.get('nombreyape')?.touched">El nombre y apellido es un campo <strong>requerido</strong></span>
+            <span *ngIf="form.get('nombreyape')?.hasError('maxlength')">Maximo <strong>30 caracteres</strong></span>
+        </div>
+    
+        <mat-form-field>
+            <mat-label>Tipo de peluquero</mat-label>
+            <mat-select formControlName="tipo" >
+                <mat-option *ngFor = "let item of tipoPeluquero" [value]="item">
+                    {{ item }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="error">
+            <span *ngIf="form.get('tipo')?.hasError('required') && form.get('tipo')?.touched">El tipo es un campo <strong>requerido</strong></span>
+        </div>
+    
+        <mat-form-field class="example-full-width">
+            <mat-label>Fecha de carga</mat-label>
+            <input [max]="maxDate" formControlName="fechaCarga" matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker></mat-datepicker>
+        </mat-form-field>
+        <div class="error">
+            <span *ngIf="form.get('fechaCarga')?.hasError('required') && form.get('fechaCarga')?.touched">La fecha de carga es un campo <strong>requerido</strong></span>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button type="button" (click)="cancelar()" mat-button>Cancelar</button>
+        <button [disabled]="form.invalid" type="submit" mat-button cdkFocusInitial>Confirmar</button>
+    </mat-dialog-actions>
+</form>

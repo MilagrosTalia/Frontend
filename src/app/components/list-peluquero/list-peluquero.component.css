@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+}
+
+.btnEdit, .btnRemove{
+    cursor: pointer;
+}
+
+.btnEdit{
+    color:blue;
+    margin-right: 20px;
+}
+
+.btnRemove{
+    color:red;
+}
+
+.mat-form-field{
+    font-size: 14px;
+    width:90%;
+    margin-right: 500px;
+}
+
